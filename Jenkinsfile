@@ -9,8 +9,9 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
+                // CHANGE THIS LINE - replace YOUR_USERNAME with mpusunuri
                 git branch: 'main', 
-                    url: 'https://github.com/YOUR_USERNAME/devops-node-app.git'
+                    url: 'https://github.com/mpusunuri/devops-node-app.git'
             }
         }
         
@@ -22,7 +23,9 @@ pipeline {
         
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t ${DOCKER_IMAGE} .'
+                script {
+                    docker.build("${DOCKER_IMAGE}")
+                }
             }
         }
         
@@ -36,6 +39,13 @@ pipeline {
                     '''
                 }
             }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+            echo 'Application is running on port 3000'
         }
     }
 }
