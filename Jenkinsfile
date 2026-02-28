@@ -1,6 +1,11 @@
 pipeline {
     agent any
     
+    triggers {
+        // This enables GitHub webhook trigger - pipeline auto-starts on git push
+        githubPush()
+    }
+    
     environment {
         DOCKER_IMAGE = 'devops-app'
         CONTAINER_NAME = 'devops-app-container'
@@ -9,7 +14,6 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                // CHANGE THIS LINE - replace YOUR_USERNAME with mpusunuri
                 git branch: 'main', 
                     url: 'https://github.com/mpusunuri/devops-node-app.git'
             }
@@ -46,6 +50,10 @@ pipeline {
         success {
             echo 'Pipeline executed successfully!'
             echo 'Application is running on port 3000'
+            echo 'Triggered by: GitHub webhook'
+        }
+        failure {
+            echo 'Pipeline failed! Check the logs.'
         }
     }
 }
