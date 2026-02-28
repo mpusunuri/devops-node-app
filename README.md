@@ -1,9 +1,13 @@
 # 🚀 DevOps Task: Node.js + Docker + Jenkins CI/CD Pipeline
 
 ![DevOps](https://img.shields.io/badge/DevOps-Complete-brightgreen)
-![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
+
+![Docker](https://img.shields.io/badge/  Docker-Containerized-blue)
+
 ![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-orange)
+
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green)
+
 ![GitHub](https://img.shields.io/badge/GitHub-Webhook-purple)
 
 ## 📋 Project Overview
@@ -75,7 +79,23 @@ app.listen(PORT, () => {
 
 ///docker file
 
-///.ignore
+FROM node:18-alpine
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+
+///.ignore 
+
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+.dockerignore
+Jenkinsfile
 
 🔧 Setup Instructions
 Prerequisites
@@ -101,6 +121,7 @@ npm install
 # Run locally
 node server.js
 # Visit http://localhost:3000
+
 🔄 Jenkins Pipeline
 Jenkinsfile
 groovy
@@ -163,8 +184,8 @@ pipeline {
 
 📊 Pipeline Stages Explanation
 Stage	Description	Commands Used
-1. Clone Repository	Pulls latest code from GitHub	git clone
-2. Install Dependencies	Installs Node.js dependencies	npm install
+1. Clone Repository	Pulls latest code from GitHub	#git clone
+2. Install Dependencies	Installs Node.js dependencies	#npm install
 3. Build Docker Image	Creates Docker image	docker build
 4. Run Docker Container	Deploys the application	docker run
 🌐 GitHub Webhook Trigger (Bonus Feature)
@@ -172,13 +193,9 @@ This project includes automatic CI/CD with GitHub webhooks!
 
 How Webhook Works
 Developer pushes code to GitHub
-
 GitHub sends webhook to Jenkins
-
 Jenkins auto-starts pipeline
-
 New container deploys updated app
-
 Changes go live automatically!
 
 Webhook Configuration
@@ -187,6 +204,7 @@ Payload URL: http://13.233.182.144:8080/github-webhook/
 Content type: application/json
 Events: Just the push event
 Active: ✓
+
 🐳 Docker Commands Used
 Basic Commands
 bash
@@ -207,6 +225,7 @@ docker stop devops-app-container
 
 # Remove container
 docker rm devops-app-container
+
 Verification Commands
 bash
 # Check if app is running
@@ -229,11 +248,10 @@ bash
 curl http://localhost:3000
 # Expected: DevOps Task Running
 Open in browser:
-
-text
 http://13.233.182.144:3000
+
 ⚙️ CI/CD Workflow Diagram
-text
+
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │  Developer  │────▶│   GitHub    │────▶│   Webhook   │
 │  git push   │     │ Repository  │     │   Trigger   │
@@ -244,7 +262,9 @@ text
 │   Browser   │◀────│     EC2     │◀────│   Jenkins   │
 │  View App   │     │  Container  │     │ Auto-Build  │
 └─────────────┘     └─────────────┘     └─────────────┘
+
 📸 Screenshots
+
 Screenshot 1: Running Docker Container
 text
 $ docker ps
@@ -253,6 +273,7 @@ cf0b974e41c0   devops-app            "docker-entrypoint.s…"   2 minutes ago   
 cff3c183dad6   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   2 hours ago      Up 2 hours      0.0.0.0:8080->8080/tcp             jenkins
 
 $ curl http://localhost:3000
+
 DevOps Task Running
 Screenshot 2: Successful Jenkins Build
 text
@@ -284,6 +305,7 @@ Finished: SUCCESS
 Screenshot 3: Browser View
 text
 DevOps Task Running
+
 ⚠️ Troubleshooting Guide
 Issue	Solution
 Port 3000 in use	sudo lsof -i :3000 && sudo kill -9 <PID>
@@ -330,10 +352,9 @@ Complete README documentation
 ✓ Cloud Deployment - Running on AWS EC2
 
 👨‍💻 Author
+
 mpusunuri
-
 GitHub: @mpusunuri
-
 Project: devops-node-app
 
 📅 Project Timeline
@@ -382,54 +403,6 @@ GitHub integration (webhooks and automation)
 
 Thank you for reviewing my DevOps task!
 
+
 For any questions or issues, please open an issue on GitHub.
-
-© 2026 mpusunuri - DevOps Task Submission
-
-text
-
-## **How to Add This README.md File**
-
-### **On Your Local Computer:**
-
-#### **Method 1: Using VS Code**
-1. Open your project in VS Code
-2. Create new file: `File → New File`
-3. Name it: `README.md`
-4. Copy the entire content above and paste
-5. Save: `Ctrl+S`
-
-#### **Method 2: Using Terminal**
-```bash
-# Navigate to your project
-cd ~/devops-task
-
-# Create README.md with nano editor
-nano README.md
-Then:
-
-Copy the entire content above
-
-Paste in nano (right-click or Ctrl+Shift+V)
-
-Save: Ctrl+O, then Enter
-
-Exit: Ctrl+X
-
-Push to GitHub:
-bash
-# Add README to git
-git add README.md
-
-# Commit it
-git commit -m "Add comprehensive README with webhook documentation"
-
-# Push to GitHub
-git push
-Verify on GitHub:
-Go to: https://github.com/mpusunuri/devops-node-app
-
-You should see your README.md displayed beautifully on the repository home page!
-
-Your README is now complete and professional! Ready for submission! 🚀
 
