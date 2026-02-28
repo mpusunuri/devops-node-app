@@ -1,13 +1,9 @@
 # 🚀 DevOps Task: Node.js + Docker + Jenkins CI/CD Pipeline
 
 ![DevOps](https://img.shields.io/badge/DevOps-Complete-brightgreen)
-
-![Docker](https://img.shields.io/badge/  Docker-Containerized-blue)
-
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
 ![Jenkins](https://img.shields.io/badge/Jenkins-CI%2FCD-orange)
-
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green)
-
 ![GitHub](https://img.shields.io/badge/GitHub-Webhook-purple)
 
 ## 📋 Project Overview
